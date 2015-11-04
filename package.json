@@ -1,0 +1,37 @@
+{
+  "name": "loadbalance",
+  "version": "0.0.1",
+  "description": "loadbalance",
+  "license": "MIT",
+  "author": {
+    "name": "yaniv kessler",
+    "email": "yanivk@gmail.com",
+    "url": "blog.yanivkessler.com"
+  },
+  "scripts": {
+    "test": "mocha test/**/*.js"
+  },
+  "dependencies": {
+    "debug": "^2.2.0",
+    "random-js": "^1.0.8"
+  },
+  "devDependencies": {
+    "chai": "^3.4.0",
+    "mocha": "~2.3.3"
+  },
+  "keywords": [
+    "load",
+    "balance",
+    "loadbalance",
+    "algorithms",
+    "algorithm",
+    "engine"
+  ],
+  "engines": {
+    "node": ">=0.10.0",
+    "npm": ">=2.0.0"
+  },
+  "repository": "kessler/node-loadbalance",
+  "bugs": "https://github.com/kessler/node-loadbalance/issues",
+  "homepage": "https://github.com/kessler/node-loadbalance"
+}
