@@ -13,7 +13,7 @@ describe('RoundRobinEngine', function () {
 	it('picks a member from the pool using round robin', function () {
 		var engine = new RoundRobinEngine(pool)
 
-		for (let i = 0; i < TEST_SIZE; i++) {
+		for (var i = 0; i < TEST_SIZE; i++) {
 			var pick = engine.pick()
 			
 			var mod = i % pool.length
