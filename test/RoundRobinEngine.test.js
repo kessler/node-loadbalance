@@ -8,7 +8,7 @@ describe('RoundRobinEngine', function () {
 	
 	var pool = ['a', 'b', 'c', 'd']
 	
-	const TEST_SIZE = 100000
+	var TEST_SIZE = 100000
 
 	it('picks a member from the pool using round robin', function () {
 		var engine = new RoundRobinEngine(pool)

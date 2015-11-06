@@ -7,7 +7,7 @@ describe('RandomEngine', function () {
 	this.timeout(10000)
 	
 	var pool = ['a', 'b', 'c', 'd']
-	const TEST_SIZE = 100000
+	var TEST_SIZE = 100000
 
 	it('picks a random element from a pool', function () {
 		var engine = new RandomEngine(pool)
