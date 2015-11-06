@@ -8,7 +8,7 @@ describe('WeightedRoundRobinEngine', function() {
 
 	var pool = ['a', 'b', 'c', 'd']
 
-	const TEST_SIZE = 10000
+	var TEST_SIZE = 10000
 
 	it('picks a member from the pool using a weighted round robin', function() {
 		var poolWithWeights = []
