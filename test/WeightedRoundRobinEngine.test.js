@@ -4,7 +4,7 @@ var expect = require('chai').expect
 var WeightedRoundRobinEngine = require('../lib/WeightedRoundRobinEngine')
 
 describe('WeightedRoundRobinEngine', function() {
-	this.timeout(10000)
+	this.timeout(20000)
 
 	var pool = ['a', 'b', 'c', 'd']
 
