@@ -17,11 +17,11 @@ var loadbalance = require('loadbalance')
 ```
 
 ## Usage
-To use, instantiate an engine with a pool and then call pick(), which will return the selected object, calling pick() repeatedly will yield the same or a different object from the pool, depending on the algorithm which powers that engine.
+To use, instantiate an engine or call a factory method with a pool. Then call pick(), which will return the selected object, calling pick() repeatedly will yield the same or a different object from the pool, depending on the algorithm which powers that engine.
 
 ```javascript
 var loadbalance = require('loadbalance')
-var engine = new loadbalance.RandomEngine(['a', 'b', 'c'])
+var engine = loadbalance.random(['a', 'b', 'c'])
 var pick = engine.pick()
 ```
 
@@ -35,11 +35,14 @@ The random engine picks an object from the pool at random, each time pick() is c
 
 ```javascript
 var loadbalance = require('loadbalance')
-var engine = new loadbalance.RandomEngine(['a', 'b', 'c'])
+var engine = loadbalance.random(['a', 'b', 'c'])
 var pick = engine.pick()
 ```
 
 #### new RandomEngine(pool, seed)
+```javascript
+var engine = new loadbalance.RandomEngine(pool)
+```
 Pool - an objects to pick from, eg ```[1,2,3]```
 Seed - an optional seed that will be used to recreate a random sequence of selections
 
@@ -48,11 +51,16 @@ An engine that picks objects from its pool using Round Robin algorithm (doh!)
 
 ```javascript
 var loadbalance = require('loadbalance')
-var engine = new loadbalance.RoundRobinEngine(['a', 'b', 'c'])
+var engine = loadbalance.roundRobin(['a', 'b', 'c'])
 var pick = engine.pick()
 ```
 
+The roundRobin() factory method can be used to obtain both RoundRobinEngine and WeightedRoundRobinEngine. The decision is based on the contents of the pool.
+
 #### new RoundRobinEngine(pool) 
+```javascript
+var engine = new loadbalance.RoundRobinEngine(pool)
+```
 Pool - objects to pick from, eg ```[1,2,3]```
 
 ### WeightedRoundRobinEngine
@@ -60,13 +68,16 @@ Same as round robin engine, only members of the pool can have weights.
 
 ```javascript
 var loadbalance = require('loadbalance')
-var engine = new loadbalance.WeightedRoundRobinEngine([{ object: 'a', weight: 2 }, {object: 'b', weight: 1 }])
+var engine = loadbalance.roundRobin([{ object: 'a', weight: 2 }, {object: 'b', weight: 1 }])
 var pick = engine.pick()
 ```
 
 call pick six times using the above engine will yield: 'a', 'a', 'b', 'a', 'a', 'b'
 
-#### new RoundRobinEngine(pool) 
+#### new WeightedRoundRobinEngine(pool) 
+```javascript
+var engine = new loadbalance.WeightedRoundRobinEngine(pool)
+```
 Pool - objects to pick from. Each object is of the form:
 ```javascript
 var object1 = {
@@ -80,6 +91,25 @@ Object (you can also use value, its an alias property) can be anything you want,
 
 ### PriorityEngine
 Not yet implemented
+
+### Extensibility
+Here is an example of a custom engine:
+```javascript
+var AbstractEngine = require('loadbalance').AbstractEngine
+var inherits = require('util').inherits
+
+function MyEngine(pool) {
+    AbstractEngine.call(this, pool)
+}
+
+inherits(MyEngine, AbstractEngine)
+
+MyEngine.prototype.pick = function () {
+    // pick something from the pool somehow and return it
+}
+
+```
+The contract of pick() states that it MUST return something each invocation.
 
 ## misc
 
