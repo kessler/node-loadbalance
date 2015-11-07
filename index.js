@@ -1,8 +1,8 @@
 module.exports.AbstractEngine = require('./lib/AbstractEngine.js')
 module.exports.random = module.exports.RandomEngine = require('./lib/RandomEngine.js')
-module.exports.RoundRobinEngine = require('./lib/RoundRobinEngine.js')
-module.exports.WeightedRoundRobinEngine = require('./lib/WeightedRoundRobinEngine.js')
-
+var RoundRobinEngine = module.exports.RoundRobinEngine = require('./lib/RoundRobinEngine.js')
+var WeightedRoundRobinEngine = module.exports.WeightedRoundRobinEngine = require('./lib/WeightedRoundRobinEngine.js')
+ 
 module.exports.roundRobin = function(pool) {
 	if (pool.length === 0) {
 		throw new Error('pool length must be greater than zero')
