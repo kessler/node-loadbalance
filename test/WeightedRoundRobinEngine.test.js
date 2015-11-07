@@ -77,4 +77,15 @@ describe('WeightedRoundRobinEngine', function() {
 			var engine = new WeightedRoundRobinEngine(poolWithWeights)	
 		}).to.throw('Weight in index 0 must be greater than zero')
 	})
+
+	it('constructor is also a factory method', function () {
+		var poolWithWeights = [{
+			weight: 1,
+			object: 'a'
+		}]
+
+		var engine = WeightedRoundRobinEngine(poolWithWeights)
+
+		expect(engine).to.be.an.instanceOf(WeightedRoundRobinEngine)
+	})
 })

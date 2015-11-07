@@ -22,4 +22,10 @@ describe('RoundRobinEngine', function () {
 			expect(pick).to.equal(pool[mod])
 		}
 	})
+
+	it('constructor is also a factory method', function () {
+		var engine = RoundRobinEngine(pool)
+
+		expect(engine).to.be.an.instanceOf(RoundRobinEngine)
+	})
 })

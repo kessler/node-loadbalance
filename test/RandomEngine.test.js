@@ -47,4 +47,9 @@ describe('RandomEngine', function () {
 
 	})
 
+	it('constructor is also a factory method', function () {
+		var engine = RandomEngine(pool)
+
+		expect(engine).to.be.an.instanceOf(RandomEngine)
+	})
 })
