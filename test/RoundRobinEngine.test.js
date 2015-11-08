@@ -8,7 +8,7 @@ describe('RoundRobinEngine', function () {
 	
 	var TEST_SIZE = 100000
 
-	it('picks a member from the pool using round robin', function () {
+	it('pick ' + TEST_SIZE + ' members from the pool using round robin', function () {
 		var engine = new RoundRobinEngine(pool)
 
 		for (var i = 0; i < TEST_SIZE; i++) {

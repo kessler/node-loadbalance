@@ -7,7 +7,7 @@ describe('RandomEngine', function () {
 	var pool = ['a', 'b', 'c', 'd']
 	var TEST_SIZE = 100000
 
-	it('picks a random element from a pool', function () {
+	it('pick ' + TEST_SIZE + ' random elements from a pool', function () {
 		var engine = new RandomEngine(pool)
 
 		var results = {}
