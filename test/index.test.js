@@ -20,4 +20,18 @@ describe('exports', function() {
 			expect(engine).to.be.an.instanceOf(RoundRobinEngine)
 		})
 	})
+
+	describe('an isEngine method to identify instances of engines', function () {
+		it('for example RoundRobinEngine will be true', function () {
+			var engine = new RoundRobinEngine([1,2,3])
+
+			expect(index.isEngine(engine)).to.be.true
+		})
+
+		it('while another object that does not inherit from AbstractEngine is false', function () {
+			var engine = {}
+
+			expect(index.isEngine(engine)).to.be.false
+		})
+	})
 })
