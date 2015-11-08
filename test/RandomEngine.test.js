@@ -2,7 +2,7 @@ var expect = require('chai').expect
 var RandomEngine = require('../lib/RandomEngine')
 
 describe('RandomEngine', function () {
-	this.timeout(20000)
+	this.timeout(50000)
 	
 	var pool = ['a', 'b', 'c', 'd']
 	var TEST_SIZE = 100000
