@@ -26,7 +26,7 @@ var pick = engine.pick()
 ```
 
 ### pick()
-Pick is called without any arguments and will always return an object which is a member of the pool.
+`pick()` is called without any arguments and will always return an object which is a member of the pool according to the pool's selection strategy
 
 ## Engines
 
@@ -44,6 +44,35 @@ var pick = engine.pick()
 var engine = new loadbalance.RandomEngine(pool)
 ```
 Pool - an objects to pick from, eg ```[1,2,3]```
+Seed - an optional seed that will be used to recreate a random sequence of selections
+
+### Weighted Random Engine
+The random engine picks an object from the pool at random **but with bias** (probably should have called it BiasedRandomEngine), each time pick() is called.
+
+```javascript
+var loadbalance = require('loadbalance')
+var engine = loadbalance.random([
+    { object: 'a', weight: 2 }, 
+    { object: 'b', weight: 3 }, 
+    { object: 'c', weight: 5 }
+])
+var pick = engine.pick()
+```
+With this engine, calling pick() repeatedly will roughly return `'a'` 20% of the time, `'b'` 30% of the time and `'c'` 50% of the time
+
+#### new WeightedRandomEngine(pool, seed)
+```javascript
+var engine = new loadbalance.WeightedRandomEngine(pool)
+```
+
+Pool - objects to pick from. Each object is of the form:
+```javascript
+var object1 = {
+    object: 'something',
+    weight: 2
+}
+```
+
 Seed - an optional seed that will be used to recreate a random sequence of selections
 
 ### RoundRobinEngine
