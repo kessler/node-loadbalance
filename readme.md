@@ -13,16 +13,16 @@ With [npm](https://npmjs.org) do:
 `npm i loadbalance`
 
 ```js
-var loadbalance = require('loadbalance')
+const loadbalance = require('loadbalance')
 ```
 
 ## Usage
 To use, instantiate an engine or call a factory method with a pool. Then call pick(), which will return the selected object, calling pick() repeatedly will yield the same or a different object from the pool, depending on the algorithm which powers that engine.
 
 ```javascript
-var loadbalance = require('loadbalance')
-var engine = loadbalance.random(['a', 'b', 'c'])
-var pick = engine.pick()
+const loadbalance = require('loadbalance')
+const engine = loadbalance.random(['a', 'b', 'c'])
+const pick = engine.pick()
 ```
 
 ### pick()
@@ -34,14 +34,14 @@ var pick = engine.pick()
 The random engine picks an object from the pool at random, each time pick() is called.
 
 ```javascript
-var loadbalance = require('loadbalance')
-var engine = loadbalance.random(['a', 'b', 'c'])
-var pick = engine.pick()
+const loadbalance = require('loadbalance')
+const engine = loadbalance.random(['a', 'b', 'c'])
+const pick = engine.pick()
 ```
 
 #### new RandomEngine(pool, seed)
 ```javascript
-var engine = new loadbalance.RandomEngine(pool)
+const engine = new loadbalance.RandomEngine(pool)
 ```
 Pool - an objects to pick from, eg ```[1,2,3]```
 Seed - an optional seed that will be used to recreate a random sequence of selections
@@ -50,24 +50,24 @@ Seed - an optional seed that will be used to recreate a random sequence of selec
 The random engine picks an object from the pool at random **but with bias** (probably should have called it BiasedRandomEngine), each time pick() is called.
 
 ```javascript
-var loadbalance = require('loadbalance')
-var engine = loadbalance.random([
+const loadbalance = require('loadbalance')
+const engine = loadbalance.random([
     { object: 'a', weight: 2 }, 
     { object: 'b', weight: 3 }, 
     { object: 'c', weight: 5 }
 ])
-var pick = engine.pick()
+const pick = engine.pick()
 ```
 With this engine, calling pick() repeatedly will roughly return `'a'` 20% of the time, `'b'` 30% of the time and `'c'` 50% of the time
 
 #### new WeightedRandomEngine(pool, seed)
 ```javascript
-var engine = new loadbalance.WeightedRandomEngine(pool)
+const engine = new loadbalance.WeightedRandomEngine(pool)
 ```
 
 Pool - objects to pick from. Each object is of the form:
 ```javascript
-var object1 = {
+const object1 = {
     object: 'something',
     weight: 2
 }
@@ -79,16 +79,16 @@ Seed - an optional seed that will be used to recreate a random sequence of selec
 An engine that picks objects from its pool using Round Robin algorithm (doh!)
 
 ```javascript
-var loadbalance = require('loadbalance')
-var engine = loadbalance.roundRobin(['a', 'b', 'c'])
-var pick = engine.pick()
+const loadbalance = require('loadbalance')
+const engine = loadbalance.roundRobin(['a', 'b', 'c'])
+const pick = engine.pick()
 ```
 
 The roundRobin() factory method can be used to obtain both RoundRobinEngine and WeightedRoundRobinEngine. The decision is based on the contents of the pool.
 
 #### new RoundRobinEngine(pool) 
 ```javascript
-var engine = new loadbalance.RoundRobinEngine(pool)
+const engine = new loadbalance.RoundRobinEngine(pool)
 ```
 Pool - objects to pick from, eg ```[1,2,3]```
 
@@ -96,20 +96,20 @@ Pool - objects to pick from, eg ```[1,2,3]```
 Same as round robin engine, only members of the pool can have weights. 
 
 ```javascript
-var loadbalance = require('loadbalance')
-var engine = loadbalance.roundRobin([{ object: 'a', weight: 2 }, {object: 'b', weight: 1 }])
-var pick = engine.pick()
+const loadbalance = require('loadbalance')
+const engine = loadbalance.roundRobin([{ object: 'a', weight: 2 }, {object: 'b', weight: 1 }])
+const pick = engine.pick()
 ```
 
 call pick six times using the above engine will yield: 'a', 'a', 'b', 'a', 'a', 'b'
 
 #### new WeightedRoundRobinEngine(pool) 
 ```javascript
-var engine = new loadbalance.WeightedRoundRobinEngine(pool)
+const engine = new loadbalance.WeightedRoundRobinEngine(pool)
 ```
 Pool - objects to pick from. Each object is of the form:
 ```javascript
-var object1 = {
+const object1 = {
     object: 'something',
     weight: 2
 }
@@ -124,17 +124,16 @@ Not yet implemented
 ### Extensibility
 Here is an example of a custom engine:
 ```javascript
-var AbstractEngine = require('loadbalance').AbstractEngine
-var inherits = require('util').inherits
+const AbstractEngine = require('loadbalance').AbstractEngine
 
-function MyEngine(pool) {
-    AbstractEngine.call(this, pool)
-}
+class MyEngine{
+    constructor(pool) {
+        super(pool)
+    }
 
-inherits(MyEngine, AbstractEngine)
-
-MyEngine.prototype.pick = function () {
-    // pick something from the pool somehow and return it
+    pick() {
+        // pick something from the pool somehow and return it
+    }
 }
 
 ```

@@ -1,53 +1,50 @@
-var expect = require('chai').expect
-var RandomEngine = require('../lib/RandomEngine')
+const { expect } = require('chai')
+const RandomEngine = require('../lib/RandomEngine')
 
 describe('RandomEngine', function () {
 	this.timeout(50000)
 	
-	var pool = ['a', 'b', 'c', 'd']
-	var TEST_SIZE = 100000
+	const pool = ['a', 'b', 'c', 'd']
+	const TEST_SIZE = 100000
 
-	it('pick ' + TEST_SIZE + ' random elements from a pool', function () {
-		var engine = new RandomEngine(pool)
+	it(`pick ${TEST_SIZE} random elements from a pool`, function () {
+		const engine = new RandomEngine(pool)
 
-		var results = {}
+		const results = {}
 
-		for (var i = 0; i < pool.length; i++) {
+		for (let i = 0; i < pool.length; i++) {
 			results[pool[i]] = 0
 		}
 
-		for (var i = 0; i < TEST_SIZE; i++) {
-			var pick = engine.pick()
+		for (let i = 0; i < TEST_SIZE; i++) {
+			let pick = engine.pick()
 			expect(pool).to.include(pick)
 			results[pick]++
 		}
 
-		for (var r in results) {
-			var p = results[r] / TEST_SIZE
+		for (let r in results) {
+			let p = results[r] / TEST_SIZE
 			expect(p).to.be.above(0.24)
 			expect(p).to.be.below(0.26)
 		}
 	})
 
 	it('accepts a seed number to be used for repeating random pick series', function () {
-		var e1a = new RandomEngine(pool, 1)
-		var e1b = new RandomEngine(pool, 1)
+		const e1a = new RandomEngine(pool, 1)
+		const e1b = new RandomEngine(pool, 1)
 
-		var e2 = new RandomEngine(pool, 2)
+		const e2 = new RandomEngine(pool, 2)
 
-		for (var i = 0; i < TEST_SIZE; i++) {
-			var e1aPick = e1a.pick()
-			var e1bPick = e1b.pick()
-			var e2Pick = e2.pick()
+		for (let i = 0; i < TEST_SIZE; i++) {
+			const e1aPick = e1a.pick()
+			const e1bPick = e1b.pick()
+			const e2Pick = e2.pick()
 
 			expect(e1aPick).to.equal(e1bPick)
 		}
-
 	})
 
-	it('constructor is also a factory method', function () {
-		var engine = RandomEngine(pool)
+	it('benchmark', function () {
 
-		expect(engine).to.be.an.instanceOf(RandomEngine)
 	})
 })

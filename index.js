@@ -1,15 +1,15 @@
-var AbstractEngine = module.exports.AbstractEngine = require('./lib/AbstractEngine.js')
-var RandomEngine = module.exports.RandomEngine = require('./lib/RandomEngine.js')
-var WeightedRandomEngine = module.exports.WeightedRandomEngine = require('./lib/WeightedRandomEngine.js')
-var RoundRobinEngine = module.exports.RoundRobinEngine = require('./lib/RoundRobinEngine.js')
-var WeightedRoundRobinEngine = module.exports.WeightedRoundRobinEngine = require('./lib/WeightedRoundRobinEngine.js')
- 
-module.exports.roundRobin = function(pool) {
+const AbstractEngine = module.exports.AbstractEngine = require('./lib/AbstractEngine.js')
+const RandomEngine = module.exports.RandomEngine = require('./lib/RandomEngine.js')
+const WeightedRandomEngine = module.exports.WeightedRandomEngine = require('./lib/WeightedRandomEngine.js')
+const RoundRobinEngine = module.exports.RoundRobinEngine = require('./lib/RoundRobinEngine.js')
+const WeightedRoundRobinEngine = module.exports.WeightedRoundRobinEngine = require('./lib/WeightedRoundRobinEngine.js')
+
+module.exports.roundRobin = (pool) => {
 	if (pool.length === 0) {
 		throw new Error('pool length must be greater than zero')
 	}
 
-	var entry = pool[0]
+	const entry = pool[0]
 
 	if (entry.weight) {
 		return new WeightedRoundRobinEngine(pool)
@@ -18,12 +18,12 @@ module.exports.roundRobin = function(pool) {
 	}
 }
 
-module.exports.random = function(pool, seed) {
+module.exports.random = (pool, seed) => {
 	if (pool.length === 0) {
 		throw new Error('pool length must be greater than zero')
 	}
 
-	var entry = pool[0]
+	const entry = pool[0]
 
 	if (entry.weight) {
 		return new WeightedRandomEngine(pool, seed)
@@ -32,6 +32,6 @@ module.exports.random = function(pool, seed) {
 	}
 }
 
-module.exports.isEngine = function (engine) {
+module.exports.isEngine = (engine) => {
 	return engine instanceof AbstractEngine
 }
