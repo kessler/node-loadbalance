@@ -12,12 +12,12 @@
     "test": "mocha test/**/*.js"
   },
   "dependencies": {
-    "debug": "^4.1.0",
-    "random-js": "^1.0.8"
+    "debug": "^4.1.1",
+    "random-js": "^2.1.0"
   },
   "devDependencies": {
-    "chai": "^3.4.0",
-    "mocha": "~3.2.0"
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4"
   },
   "keywords": [
     "load",
@@ -29,10 +29,6 @@
     "algorithm",
     "engine"
   ],
-  "engines": {
-    "node": ">=0.10.0",
-    "npm": ">=2.0.0"
-  },
   "repository": "kessler/node-loadbalance",
   "bugs": "https://github.com/kessler/node-loadbalance/issues",
   "homepage": "https://github.com/kessler/node-loadbalance"
