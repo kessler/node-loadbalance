@@ -9,7 +9,8 @@
     "url": "blog.yanivkessler.com"
   },
   "scripts": {
-    "test": "mocha test/**/*.js"
+    "test": "mocha test/**/*.js",
+    "bench": "node benchmarks/runBench.js"
   },
   "dependencies": {
     "debug": "^4.1.1",
