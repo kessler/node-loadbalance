@@ -126,18 +126,17 @@ Here is an example of a custom engine:
 ```javascript
 const AbstractEngine = require('loadbalance').AbstractEngine
 
-class MyEngine{
+class MyEngine extends AbstractEngine {
     constructor(pool) {
         super(pool)
     }
 
-    pick() {
+    _pick(pool) {
         // pick something from the pool somehow and return it
     }
 }
 
 ```
-The contract of pick() states that it MUST return something each invocation.
 
 ## misc
 
