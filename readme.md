@@ -1,6 +1,6 @@
 # loadbalance
 
-[![npm status](http://img.shields.io/npm/v/loadbalance.svg?style=flat-square)](https://www.npmjs.org/package/loadbalance) [![Travis build status](https://img.shields.io/travis/kessler/node-loadbalance.svg?style=flat-square&label=travis)](http://travis-ci.org/kessler/node-loadbalance) [![Dependency status](https://img.shields.io/david/kessler/node-loadbalance.svg?style=flat-square)](https://david-dm.org/kessler/node-loadbalance)
+[![npm status](http://img.shields.io/npm/v/loadbalance.svg?style=flat-square)](https://www.npmjs.org/package/loadbalance)
 
 This is a collection of load balancing engines in (what is hopefully) their most distilled form. 
 
@@ -86,7 +86,7 @@ const pick = engine.pick()
 
 The roundRobin() factory method can be used to obtain both RoundRobinEngine and WeightedRoundRobinEngine. The decision is based on the contents of the pool.
 
-#### new RoundRobinEngine(pool) 
+#### new RoundRobinEngine(pool)
 ```javascript
 const engine = new loadbalance.RoundRobinEngine(pool)
 ```
@@ -103,7 +103,7 @@ const pick = engine.pick()
 
 call pick six times using the above engine will yield: 'a', 'a', 'b', 'a', 'a', 'b'
 
-#### new WeightedRoundRobinEngine(pool) 
+#### new WeightedRoundRobinEngine(pool)
 ```javascript
 const engine = new loadbalance.WeightedRoundRobinEngine(pool)
 ```
